@@ -1,6 +1,5 @@
 #include <app/app.h>
 #include <app/version.h>
-
 #include <cxxopts.hpp>
 #include <iostream>
 #include <string>
@@ -8,16 +7,15 @@
 
 auto main(int argc, char** argv) -> int {
 
-
-  cxxopts::Options options(*argv, "A program to welcome the world!");
+  cxxopts::Options options(*argv, "a program to store and count user's words.");
 
   std::string language;
   std::string name;
 
   // clang-format off
   options.add_options()
-    ("h,help", "Show help")
-    ("v,version", "Print the current version number")
+    ("h,help", "show help")
+    ("v,version", "print the current version number")
   ;
   // clang-format on
 
