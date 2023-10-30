@@ -1,0 +1,20 @@
+
+=== Word list:
+foo
+ (2)
+bar
+ (1)
+
+Enter a word for lookup:
+SUCCESS: 'foo' was present 2 times in the initial word list
+
+Enter a word for lookup:
+SUCCESS: 'bar' was present 1 times in the initial word list
+
+Enter a word for lookup:
+'baz' was NOT found in the initial word list
+
+Enter a word for lookup:
+
+=== Total words found: 2
+

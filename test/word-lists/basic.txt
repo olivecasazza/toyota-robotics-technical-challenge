@@ -1,0 +1,7 @@
+foo
+foo
+bar
+end
+foo
+bar
+baz
