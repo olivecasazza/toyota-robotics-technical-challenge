@@ -59,8 +59,8 @@ void App::run() {
 void App::readInputWords() {
   bool endEncountered = false;
   std::thread *worker = new std::thread(&workerThread, std::ref(wordList), std::ref(wordBuffer));
-  std::array<char, 32> buffer = { "" };
-  wordBuffer.data = new char[32] { "" };
+  std::array<char, 32> buffer = { ' ' };
+  wordBuffer.data = new char[32] { ' ' };
   while (!endEncountered) {
     if (std::fgets(buffer.data(), buffer.size(), stdin)) {
       endEncountered = std::strcoll(buffer.data(), "end\n") == 0;
@@ -82,7 +82,7 @@ void App::readInputWords() {
 // Terminate on EOF
 //
 void App::lookupWords() {
-  std::array<char, 32> buffer;
+  std::array<char, 32> buffer = { ' ' };
 
   for (;;) {
     std::printf("\nEnter a word for lookup:\n");
