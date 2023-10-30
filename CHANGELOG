@@ -1,0 +1,73 @@
+
+# Change Log
+All notable changes to this project will be documented in this file.
+ 
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
+ 
+
+## [unreleased] - 2023-10-30
+ 
+Todo(s) and future improvements for this application.
+ 
+### Todo(s)
+- Improvements for sanitization. Detect invalid/valid characters. Strip invalid characters.
+- Further separate logic and IO, especially the word list query interface.
+- Implement the code needed to have multiple workers accepting words from stdin. 
+- Implement and test locking for concurrency.
+- E2E tests for testing multithreaded behavior.
+- Fuzz tests for finding edge cases in multithreaded behavior. 
+
+## [1.0.1] - 2023-10-30
+ 
+Here we make improvements to the refactored version of the repository
+ 
+### Added
+
+- include/wordList.h
+- Added arg parse for standalone app
+- Added unit test cases for WordList class, and App.
+- Added some data validation to check for invalid inputs.
+ 
+### Changed
+- Implemented wordList (prev s_wordsArray) with internal set. 
+  - The underling implementation of std::set will change based on machine type, but usually are red black trees, which are advantageous for this situation in particular. 
+  - std:: map is another good canidate, but will most likely have worse memory efficiency than our set. 
+  - Given our requirements, the fact that sets will be ordered (given the implementation of a comparator for your data type) is a bonus.
+
+### Fixed
+
+## [1.0.0] - 2023-10-28
+  
+Initial repository commit. See [TheLartians/ModernCppStarter](https://github.com/TheLartians/ModernCppStarter) for details on initial boilerplate template. See README for install, build, deploy, and test instructions. Added original source code (buggy.cxx) to repository and did simple refactoring into separate classes.
+
+### Fixed
+- Instantiate memory buffer correctly.
+- Fix invalid strcpy
+- Uses arrays for buffers
+
+
+### Changed
+- Refactored buggy.cxx into separate classes. (see documentation/source for simplest changes to fix buggy.cxx)
+- Simple fixes to buggy.cxx
+- Abstracted s_wordsArray into a class WordList so we can implement various storage mechanisms.
+
+### Added
+
+- [TheLartians/ModernCppStarter](https://github.com/TheLartians/ModernCppStarter)
+  - [Modern CMake practices](https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/)
+  - Suited for single header libraries and projects of any scale
+  - Clean separation of library and executable code
+  - Integrated test suite
+  - Continuous integration via [GitHub Actions](https://help.github.com/en/actions/)
+  - Code coverage via [codecov](https://codecov.io)
+  - Code formatting enforced by [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [cmake-format](https://github.com/cheshirekow/cmake_format) via [Format.cmake](https://github.com/olivecasazza/Format.cmake)
+  - Reproducible dependency management via [CPM.cmake](https://github.com/olivecasazza/CPM.cmake)
+  - Installable target with automatic versioning information and header generation via [PackageProject.cmake](https://github.com/olivecasazza/PackageProject.cmake)
+  - Automatic [documentation](https://thelartians.github.io/ModernCppStarter) and deployment with [Doxygen](https://www.doxygen.nl) and [GitHub Pages](https://pages.github.com)
+  - Support for [sanitizer tools, and more](#additional-tools)
+- buggy.cxx
+- include/app.h
+- include/word.h
+- include/app.cpp
+- standalone/source/app
