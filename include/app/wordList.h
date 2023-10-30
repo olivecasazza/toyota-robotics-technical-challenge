@@ -7,11 +7,8 @@
 
 namespace app {
 
-
   struct cstrless {
-    bool operator()(Word* a, Word* b) const {
-      return strcmp(a->data, b->data) < 0;
-    }
+    bool operator()(Word *a, Word *b) const { return strcmp(a->data, b->data) < 0; }
   };
 
   class WordList {

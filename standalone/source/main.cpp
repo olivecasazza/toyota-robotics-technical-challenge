@@ -1,12 +1,12 @@
 #include <app/app.h>
 #include <app/version.h>
+
 #include <cxxopts.hpp>
 #include <iostream>
 #include <string>
 #include <unordered_map>
 
 auto main(int argc, char** argv) -> int {
-
   cxxopts::Options options(*argv, "a program to store and count user's words.");
 
   std::string language;
@@ -33,6 +33,6 @@ auto main(int argc, char** argv) -> int {
 
   app::App* app = new app::App();
   app->run();
-  
+
   return 0;
 }

@@ -3,9 +3,9 @@
 
 #include <cstdio>
 #include <cstring>
-#include <string>
 #include <iostream>
 #include <set>
+#include <string>
 #include <thread>
 
 using namespace app;
@@ -19,7 +19,7 @@ static void workerThread(WordList &wordList, Word &s_word) {
     if (s_word.data[0])  // Do we have a new word?
     {
       Word *w = new Word(s_word.data);  // Copy the word
-      s_word.data[0] = 0;  // Inform the producer that we consumed the word
+      s_word.data[0] = 0;               // Inform the producer that we consumed the word
       endEncountered = std::strcmp(w->data, "end\n") == 0;
       if (!endEncountered) {
         // Do not insert duplicate words
@@ -59,8 +59,8 @@ void App::run() {
 void App::readInputWords() {
   bool endEncountered = false;
   std::thread *worker = new std::thread(&workerThread, std::ref(wordList), std::ref(wordBuffer));
-  std::array<char, 32> buffer = { ' ' };
-  wordBuffer.data = new char[32] { ' ' };
+  std::array<char, 32> buffer = {' '};
+  wordBuffer.data = new char[32]{' '};
   while (!endEncountered) {
     if (std::fgets(buffer.data(), buffer.size(), stdin)) {
       endEncountered = std::strcoll(buffer.data(), "end\n") == 0;
@@ -82,7 +82,7 @@ void App::readInputWords() {
 // Terminate on EOF
 //
 void App::lookupWords() {
-  std::array<char, 32> buffer = { ' ' };
+  std::array<char, 32> buffer = {' '};
 
   for (;;) {
     std::printf("\nEnter a word for lookup:\n");
@@ -98,7 +98,8 @@ void App::lookupWords() {
                     Word::delete_char(wordFound->data, '\n'), wordFound->count);
         ++totalWordsFound;
       } else
-        std::printf("'%s' was NOT found in the initial word list\n", Word::delete_char( w->data, '\n'));
+        std::printf("'%s' was NOT found in the initial word list\n",
+                    Word::delete_char(w->data, '\n'));
     } else if (std::feof(stdin))
       return;
     else if (std::ferror(stdin))

@@ -11,9 +11,9 @@ namespace app {
     Word(char *data_) : data(::strdup(data_)) {}
     Word() : data((char *)""){};
 
-    static bool isValid(char * buf) {
+    static bool isValid(char *buf) {
       size_t buflen = strlen(buf);
-      for (size_t i = 0; i < buflen; ++i) 
+      for (size_t i = 0; i < buflen; ++i)
         if (isalnum(buf[i]) || buf[i] != ' ') return false;
       return true;
     }
