@@ -3,13 +3,12 @@
 
 #include <cstdio>
 #include <cstring>
+#include <string>
 #include <iostream>
 #include <set>
 #include <thread>
 
 using namespace app;
-
-App::App(){};
 
 // Worker thread: consume words passed from the main thread and insert them
 // in the 'word list' (s_wordsArray), while removing duplicates. Terminate when
@@ -27,8 +26,9 @@ static void workerThread(WordList &wordList, Word &s_word) {
         Word *wordFound = wordList.contains(w->data);
         if (wordFound)
           wordFound->count++;
-        else
+        else {
           wordList.insertWord(w);
+        }
       }
     }
   }
@@ -52,8 +52,6 @@ void App::run() {
   }
 }
 
-void App::print() { wordList.print(); }
-
 // Read input words from STDIN and pass them to the worker thread for
 // inclusion in the word list.
 // Terminate when the word 'end' has been entered.
@@ -61,8 +59,8 @@ void App::print() { wordList.print(); }
 void App::readInputWords() {
   bool endEncountered = false;
   std::thread *worker = new std::thread(&workerThread, std::ref(wordList), std::ref(wordBuffer));
-  std::array<char, 32> buffer;
-  wordBuffer.data = new char[32];
+  std::array<char, 32> buffer = { "" };
+  wordBuffer.data = new char[32] { "" };
   while (!endEncountered) {
     if (std::fgets(buffer.data(), buffer.size(), stdin)) {
       endEncountered = std::strcoll(buffer.data(), "end\n") == 0;
@@ -97,10 +95,10 @@ void App::lookupWords() {
       Word *wordFound = wordList.contains(w->data);
       if (wordFound) {
         std::printf("SUCCESS: '%s' was present %d times in the initial word list\n",
-                    wordFound->data, wordFound->count);
+                    Word::delete_char(wordFound->data, '\n'), wordFound->count);
         ++totalWordsFound;
       } else
-        std::printf("'%s' was NOT found in the initial word list\n", w->data);
+        std::printf("'%s' was NOT found in the initial word list\n", Word::delete_char( w->data, '\n'));
     } else if (std::feof(stdin))
       return;
     else if (std::ferror(stdin))

@@ -54,9 +54,8 @@ TEST_CASE("Word list sorts items when printed.") {
     new Word((char *)"foo")
   };
 
-  for (auto i : expected) {
-    output.push_back(i);
-  }
+  for (auto w = wordList.s_wordsArray.begin(); w != wordList.s_wordsArray.end(); w++)
+    output.push_back(*w);
 
   for(int i = 0; i < 3; i++){
     CHECK(strcmp(output[i]->data, expected[i]->data) == 0);
