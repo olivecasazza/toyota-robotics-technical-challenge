@@ -13,9 +13,7 @@ namespace app {
       return strcmp(a->data, b->data) < 0;
     }
   };
-  /**
-   * @brief A class for saying hello in multiple languages
-   */
+
   class WordList {
   public:
     std::set<Word *, cstrless> s_wordsArray;
