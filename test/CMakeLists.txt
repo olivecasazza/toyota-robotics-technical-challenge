@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14...3.22)
 
-project(GreeterTests LANGUAGES CXX)
+project(AppTests LANGUAGES CXX)
 
 # ---- Options ----
 
@@ -41,7 +41,7 @@ if(NOT TEST_INSTALLED_VERSION)
   endif()
 endif()
 
-# ---- Add GreeterTests ----
+# ---- Add AppTests ----
 
 enable_testing()
 

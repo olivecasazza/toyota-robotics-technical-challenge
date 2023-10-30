@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14...3.22)
 
-project(GreeterDocs)
+project(AppDocs)
 
 # ---- Dependencies ----
 
@@ -13,7 +13,7 @@ CPMAddPackage(NAME App SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # set Doxyfile variables
 set(DOXYGEN_PROJECT_NAME App)
-set(DOXYGEN_PROJECT_VERSION ${Greeter_VERSION})
+set(DOXYGEN_PROJECT_VERSION ${App_VERSION})
 set(DOXYGEN_PROJECT_ROOT "${CMAKE_CURRENT_LIST_DIR}/..")
 set(DOXYGEN_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/doxygen")
 

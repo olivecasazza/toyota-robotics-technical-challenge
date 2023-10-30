@@ -1,5 +1,5 @@
-#include <fmt/format.h>
 #include <app/app.h>
+#include <fmt/format.h>
 
 #include <cstdio>
 #include <cstring>
@@ -9,7 +9,7 @@
 
 using namespace app;
 
-App::App() {};
+App::App(){};
 
 // Worker thread: consume words passed from the main thread and insert them
 // in the 'word list' (s_wordsArray), while removing duplicates. Terminate when
@@ -19,9 +19,8 @@ static void workerThread(WordList &wordList, Word &s_word) {
   while (!endEncountered) {
     if (s_word.data[0])  // Do we have a new word?
     {
-      Word *w = new Word();  // Copy the word
-      strcpy(w->data, s_word.data);
-      s_word.data[0] = 0;          // Inform the producer that we consumed the word
+      Word *w = new Word(s_word.data);  // Copy the word
+      s_word.data[0] = 0;  // Inform the producer that we consumed the word
       endEncountered = std::strcmp(w->data, "end\n") == 0;
       if (!endEncountered) {
         // Do not insert duplicate words
@@ -37,11 +36,10 @@ static void workerThread(WordList &wordList, Word &s_word) {
 
 void App::run() {
   try {
-
-    // read input words from stdin (until user enters "end")
+    // // read input words from stdin (until user enters "end")
     readInputWords();
 
-    // Print the word list
+    // // Print the word list
     std::printf("\n=== Word list:\n");
     wordList.print();
 
@@ -69,7 +67,7 @@ void App::readInputWords() {
     if (std::fgets(buffer.data(), buffer.size(), stdin)) {
       endEncountered = std::strcoll(buffer.data(), "end\n") == 0;
       // Pass the word to the worker thread
-      std::strcpy(wordBuffer.data, buffer.data());
+      std::strncpy(wordBuffer.data, buffer.data(), buffer.size());
       while (wordBuffer.data[0])
         ;  // Wait for the worker thread to consume it
     } else if (std::feof(stdin))

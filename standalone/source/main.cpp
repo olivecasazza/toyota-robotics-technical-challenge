@@ -33,8 +33,8 @@ auto main(int argc, char** argv) -> int {
     return 0;
   }
 
-  app::App app = app::App();
-  app.run();
+  app::App* app = new app::App();
+  app->run();
   
   return 0;
 }

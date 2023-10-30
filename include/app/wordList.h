@@ -6,12 +6,19 @@
 #include <string>
 
 namespace app {
+
+
+  struct cstrless {
+    bool operator()(Word* a, Word* b) const {
+      return strcmp(a->data, b->data) < 0;
+    }
+  };
   /**
    * @brief A class for saying hello in multiple languages
    */
   class WordList {
   public:
-    std::set<Word *> s_wordsArray;
+    std::set<Word *, cstrless> s_wordsArray;
     Word *contains(char *data) {
       for (auto w = s_wordsArray.begin(); w != s_wordsArray.end(); w++)
         if (strcmp((*w)->data, data) == 0) return *w;

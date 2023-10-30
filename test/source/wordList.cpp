@@ -27,16 +27,16 @@ TEST_CASE("Word list inserts and counts duplicate words correctly.") {
   CHECK_EQ(wordList.s_wordsArray.size(), 3);
 
   Word* foo = wordList.contains((char *)"foo");
-  CHECK_EQ(foo->data, (char*)"foo");
+  CHECK_EQ(strcmp(foo->data, (char*)"foo"), 0);
   CHECK_EQ(foo->count, 4);
 
   Word* bar = wordList.contains((char *)"bar");
-  CHECK_EQ(bar->data, (char*)"bar");
+  CHECK_EQ(strcmp(bar->data, (char*)"bar"), 0);
   CHECK_EQ(bar->count, 1);
 
 
   Word* baz = wordList.contains((char *)"baz");
-  CHECK_EQ(baz->data, (char*)"baz");
+  CHECK_EQ(strcmp(baz->data, (char*)"baz"), 0);
   CHECK_EQ(baz->count, 1);
 }
 
@@ -59,7 +59,7 @@ TEST_CASE("Word list sorts items when printed.") {
   }
 
   for(int i = 0; i < 3; i++){
-    CHECK_EQ(output[i]->data, expected[i]->data);
+    CHECK(strcmp(output[i]->data, expected[i]->data) == 0);
     CHECK_EQ(output[i]->count, expected[i]->count);
   }
 }

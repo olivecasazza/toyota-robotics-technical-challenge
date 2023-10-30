@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14...3.22)
 
-project(GreeterStandalone LANGUAGES CXX)
+project(AppStandalone LANGUAGES CXX)
 
 # --- Import tools ----
 
