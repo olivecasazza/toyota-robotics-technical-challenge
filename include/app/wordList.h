@@ -11,7 +11,7 @@ namespace app {
     bool operator()(Word *a, Word *b) const { return strcmp(a->data, b->data) < 0; }
   };
 
-  /// @brief a data structure used to store a list of words in order. 
+  /// @brief a data structure used to store a list of words in order.
   class WordList {
   public:
     std::set<Word *, cstrless> s_wordsArray;
@@ -31,7 +31,8 @@ namespace app {
         std::cout << (*w)->data << " #: " << (*w)->count << std::endl;
     }
 
-    /// @brief insert a new word into the list, if it has already been entered, increase the count of the word.
+    /// @brief insert a new word into the list, if it has already been entered, increase the count
+    /// of the word.
     /// @param word the word to insert into the list.
     /// @return the word inserted into (or already existed in) into the list
     Word *insertWord(Word *word) {

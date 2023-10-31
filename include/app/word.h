@@ -5,7 +5,8 @@
 
 namespace app {
 
-  /// @brief a data structure used to store words (char* ) and a integer to count the frequency that the word was entered.
+  /// @brief a data structure used to store words (char* ) and a integer to count the frequency that
+  /// the word was entered.
   struct Word {
     char *data = new char[32];
     int count = 1;
@@ -24,7 +25,7 @@ namespace app {
     }
 
     /// @brief helper function used to remove specific characters from char*
-    /// @param sourceArray the char* that 
+    /// @param sourceArray the char* that
     /// @param inputChar the character to remove
     /// @return the pointer to the updated character array
     static char *delete_char(char *sourceArray, char inputChar) {

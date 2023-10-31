@@ -36,7 +36,6 @@ static void workerThread(WordList &wordList, Word &s_word) {
   }
 };
 
-
 void App::run() {
   try {
     // // read input words from stdin (until user enters "end")
