@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 Todo(s) and future improvements for this application.
  
 ### Todo(s)
+- Swap out char* with string. Could affect performance, but probably worth the dynamic size, and other abstractions.
 - Improvements for sanitization. Detect invalid/valid characters. Strip invalid characters.
 - Further separate logic and IO, especially the word list query interface.
 - Implement the code needed to have multiple workers accepting words from stdin. 
 - Implement and test locking for concurrency.
+- Performance tests so we can benchmark incremental changes.
 - E2E tests for testing multithreaded behavior.
 - Fuzz tests for finding edge cases in multithreaded behavior. 
 
@@ -28,6 +30,7 @@ Here we make improvements to the refactored version of the repository
 - Added arg parse for standalone app
 - Added unit test cases for WordList class, and App.
 - Added some data validation to check for invalid inputs.
+- Adds doxygen comments/document generation.
  
 ### Changed
 - Implemented wordList (prev s_wordsArray) with internal set. 
@@ -42,10 +45,13 @@ Here we make improvements to the refactored version of the repository
 Initial repository commit. See [TheLartians/ModernCppStarter](https://github.com/TheLartians/ModernCppStarter) for details on initial boilerplate template. See README for install, build, deploy, and test instructions. Added original source code (buggy.cxx) to repository and did simple refactoring into separate classes.
 
 ### Fixed
-- Instantiate memory buffer correctly.
+- Instantiate word memory buffer correctly.
 - Fix invalid strcpy
 - Uses arrays for buffers
-
+- In worker, fixed init word from word buffer
+- In readInputWords(), fixes line used to check if end was encountered.
+- When copying to buffers, use copy functions that are fixed size.
+- Correct sort function. 
 
 ### Changed
 - Refactored buggy.cxx into separate classes. (see documentation/source for simplest changes to fix buggy.cxx)
