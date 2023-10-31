@@ -14,6 +14,7 @@ using namespace app;
 // Worker thread: consume words passed from the main thread and insert them
 // in the 'word list' (s_wordsArray), while removing duplicates. Terminate when
 // the word 'end' is encountered.
+
 static void workerThread(WordList &wordList, Word &s_word) {
   bool endEncountered = false;
   while (!endEncountered) {
@@ -35,6 +36,7 @@ static void workerThread(WordList &wordList, Word &s_word) {
   }
 };
 
+
 void App::run() {
   try {
     // // read input words from stdin (until user enters "end")
@@ -53,10 +55,6 @@ void App::run() {
   }
 }
 
-// Read input words from STDIN and pass them to the worker thread for
-// inclusion in the word list.
-// Terminate when the word 'end' has been entered.
-//
 void App::readInputWords() {
   bool endEncountered = false;
   std::thread *worker = new std::thread(&workerThread, std::ref(wordList), std::ref(wordBuffer));
@@ -79,9 +77,6 @@ void App::readInputWords() {
   worker->join();  // Wait for the worker to terminate
 }
 
-// Repeatedly ask the user for a word and check whether it was present in the word list
-// Terminate on EOF
-//
 void App::lookupWords() {
   std::array<char, 32> buffer = {' '};
 
