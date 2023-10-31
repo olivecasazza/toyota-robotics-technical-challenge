@@ -1,6 +1,7 @@
 #include <app/app.h>
 #include <fmt/format.h>
 
+#include <array>
 #include <cstdio>
 #include <cstring>
 #include <iostream>
