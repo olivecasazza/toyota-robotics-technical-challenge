@@ -11,10 +11,9 @@
 
 using namespace app;
 
-// Worker thread: consume words passed from the main thread and insert them
-// in the 'word list' (s_wordsArray), while removing duplicates. Terminate when
-// the word 'end' is encountered.
-
+/// @brief Worker thread: consume words passed from the main thread and insert them
+/// in the 'word list' (s_wordsArray), while removing duplicates. Terminate when
+/// the word 'end' is encountered.
 static void workerThread(WordList &wordList, Word &s_word) {
   bool endEncountered = false;
   while (!endEncountered) {
